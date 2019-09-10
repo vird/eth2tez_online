@@ -9,6 +9,8 @@
     <span id="load_msg">
       Need some time to load. Loading...
     </span>
+    <select id="src_select">
+    </select>
     <div class="contents">
       <div class="code">
         <div id="solidity_src_wrap">
@@ -48,6 +50,7 @@ contract Ifer {
     <script src="solidity_to_ast4gen.js"></script>
     <script src="translate.js"></script>
     <script src="type_inference.js"></script>
+    <script src="example_list.js"></script>
     <script>
       document.querySelector('#solidity_src').focus();
       document.querySelector('#load_msg').innerText = "Very experimental. Use it at your own RISK.";
@@ -87,6 +90,20 @@ contract Ifer {
       };
       document.querySelector('#solidity_src').onchange = onchange;
       document.querySelector('#solidity_src').onkeyup = onchange;
+      
+      var $src_select = document.querySelector('#src_select')
+      var jl_list = example_list.map(function(example){
+        return "<option>"+example.title+"</option>";
+      })
+      $src_select.onchange = function(t) {
+        example_list.map(function(t){
+          if (t.title == $src_select.value) {
+            document.querySelector('#solidity_src').value = t.code;
+            compile();
+          }
+        });
+      }
+      $src_select.innerHTML = jl_list.join('');
     </script>
   </body>
 </html>

@@ -134,6 +134,8 @@
 
     Gen_context.prototype.lvalue = false;
 
+    Gen_context.prototype.trim_expr = '';
+
     function Gen_context() {
       this.fn_hash = {};
       this.var_hash = {};
@@ -292,6 +294,8 @@
           arg_list.push(config.contractStorage);
           tmp_var = "tmp_" + (ctx.tmp_idx++);
           ctx.sink_list.push("const " + tmp_var + " : (" + (type_jl.join(' * ')) + ") = " + fn + "(" + (arg_list.join(', ')) + ")");
+          ctx.sink_list.push("" + config.contractStorage + " := " + tmp_var + ".1");
+          ctx.trim_expr = tmp_var;
           return tmp_var;
         }
         break;
@@ -315,6 +319,10 @@
             append(sink);
           }
           ctx.sink_list.clear();
+          if (ctx.trim_expr === t) {
+            ctx.trim_expr = '';
+            continue;
+          }
           append(t);
         }
         ret = jl.pop() || '';
@@ -414,4 +422,6 @@
         throw new Error("unknown ast.constructor.name=" + ast.constructor.name);
     }
   };
+
 }).call(window.translate = {})
+
