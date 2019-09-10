@@ -28,6 +28,12 @@
     }, {
       title: 'fn call',
       code: 'pragma solidity ^0.5.11;\n\ncontract Fn_call {\n  int public value;\n  \n  function fn1(int a) public returns (int yourMom) {\n    value += 1;\n    return a;\n  }\n  function fn2() public returns (int yourMom) {\n    fn1(1);\n    int res = 1;\n    return res;\n  }\n}'
+    }, {
+      title: '--- near-real examples ---',
+      code: ''
+    }, {
+      title: 'simplecoin',
+      code: 'pragma solidity ^0.5.11;\n\ncontract Coin {\n    address minter;\n    mapping (address => uint) balances;\n    \n    constructor() public {\n        minter = msg.sender;\n    }\n    function mint(address owner, uint amount) public {\n        if (msg.sender == minter) {\n            balances[owner] += amount;\n        }\n    }\n    function send(address receiver, uint amount) public {\n        if (balances[msg.sender] >= amount) {\n            balances[msg.sender] -= amount;\n            balances[receiver] += amount;\n        }\n    }\n    function queryBalance(address addr) public view returns (uint balance) {\n        return balances[addr];\n    }\n}'
     }
   ];
 
