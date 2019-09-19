@@ -7,8 +7,8 @@
   </head>
   <body>
     <div class="nav">
-      <a href="https://vird.github.io/eth2tez_online/"            class="nav_selected" >Ligo</a>
-      <a href="https://vird.github.io/eth2tez_online/smartpy.html">SmartPy</a>
+      <a href="https://vird.github.io/eth2tez_online/"            >Ligo</a>
+      <a href="https://vird.github.io/eth2tez_online/smartpy.html" class="nav_selected">SmartPy</a>
       <div class="example_selector">
         <span id="load_msg">
           Need some time to load. Loading...
@@ -49,13 +49,12 @@ contract Ifer {
     <script src="common/sol_wrapper.js"></script>
     <script src="common/fy.js"></script>
     <script src="common/codegen.js"></script>
-    <script src="eth2tez/config.js"></script>
+    <script src="solidity2smartpy/config.js"></script>
     <script src="common/type.js"></script>
-    <script src="eth2tez/ast4gen.js"></script>
-    <script src="eth2tez/ast.js"></script>
-    <script src="eth2tez/solidity_to_ast4gen.js"></script>
-    <script src="eth2tez/translate.js"></script>
-    <script src="eth2tez/type_inference.js"></script>
+    <script src="solidity2smartpy/ast4gen.js"></script>
+    <script src="solidity2smartpy/ast.js"></script>
+    <script src="solidity2smartpy/solidity_to_ast4gen.js"></script>
+    <script src="solidity2smartpy/translate.js"></script>
     <script src="example_list.js"></script>
     <script>
       document.querySelector('#solidity_src').focus();
@@ -70,7 +69,6 @@ contract Ifer {
             var code = document.querySelector('#solidity_src').value;
             var solidity_ast = ast_gen(code);
             var ast = solidity_to_ast4gen(solidity_ast);
-            var ast = type_inference.gen(ast);
             var res = translate.gen(ast);
             
             document.querySelector('#ligo_dst').innerHTML = res;

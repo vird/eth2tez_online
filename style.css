@@ -1,3 +1,32 @@
+body {
+  margin-top: 0px;
+}
+.nav {
+  margin: 0px;
+  padding: 0px;
+}
+.nav a {
+  font-size: 14px;
+  line-height: 14px;
+  color: #fff;
+  background: #0091b9;
+  padding: 15px 20px;
+  font-weight: 300;
+  border-radius: 10px;
+  margin: 15px 15px 0 0;
+  float: left;
+  cursor: pointer;
+}
+.nav_selected {
+  color: #000 !important;
+  font-weight: 600 !important;
+  text-decoration: none;
+  background: #FFD800 !important;
+}
+.example_selector {
+  padding: 25px 20px;
+}
+
 .contents {
   background: #007ea1;
 }
@@ -5,7 +34,7 @@
   background: #176980;
   border: 2px solid #555;
   position: absolute;
-  top: 30px;
+  top: 70px;
   left: 15px;
   right: 15px;
   bottom: 15px;
